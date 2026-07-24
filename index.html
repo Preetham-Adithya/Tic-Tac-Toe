@@ -137,23 +137,21 @@
 </div>
 
 <script>
-  // ---- Game state ----
-  let board = Array(9).fill(null);   // 9 cells, null = empty
+  let board = Array(9).fill(null);   
   let currentPlayer = "X";
   let gameActive = true;
   let scores = { X: 0, O: 0, D: 0 };
 
   const WIN_LINES = [
-    [0,1,2], [3,4,5], [6,7,8], // rows
-    [0,3,6], [1,4,7], [2,5,8], // columns
-    [0,4,8], [2,4,6]           // diagonals
+    [0,1,2], [3,4,5], [6,7,8], 
+    [0,3,6], [1,4,7], [2,5,8], 
+    [0,4,8], [2,4,6]           
   ];
 
   const boardEl = document.getElementById("board");
   const statusEl = document.getElementById("status");
   const resetBtn = document.getElementById("resetBtn");
 
-  // ---- Build the 9 buttons once ----
   function createBoard() {
     boardEl.innerHTML = "";
     board.forEach((_, index) => {
@@ -165,11 +163,11 @@
     });
   }
 
-  // ---- Handle a player clicking a cell ----
+ 
   function handleCellClick(e) {
     const index = Number(e.target.dataset.index);
 
-    if (board[index] || !gameActive) return; // ignore filled cell / finished game
+    if (board[index] || !gameActive) return; 
 
     board[index] = currentPlayer;
     render();
@@ -178,14 +176,13 @@
     if (winInfo) {
       endGame(winInfo);
     } else if (board.every(cell => cell !== null)) {
-      endGame(null); // draw
+      endGame(null);
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
       statusEl.textContent = `Player ${currentPlayer}'s turn`;
     }
   }
 
-  // ---- Check if someone has won ----
   function checkWinner() {
     for (const line of WIN_LINES) {
       const [a, b, c] = line;
@@ -196,7 +193,6 @@
     return null;
   }
 
-  // ---- End the game (win or draw) ----
   function endGame(winInfo) {
     gameActive = false;
 
@@ -225,7 +221,6 @@
     document.getElementById("scoreD").textContent = scores.D;
   }
 
-  // ---- Draw the board's current state to the page ----
   function render() {
     [...boardEl.children].forEach((cell, i) => {
       cell.textContent = board[i] || "";
@@ -235,7 +230,6 @@
     });
   }
 
-  // ---- Reset for a new round ----
   function resetGame() {
     board = Array(9).fill(null);
     currentPlayer = "X";
@@ -246,7 +240,6 @@
 
   resetBtn.addEventListener("click", resetGame);
 
-  // ---- Start ----
   createBoard();
 </script>
 
