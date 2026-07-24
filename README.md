@@ -11,7 +11,7 @@ JavaScript** — no frameworks or libraries required.
 - One-click restart
 
 ## Live Demo
-🔗 [Play it here](https://yourusername.github.io/tic-tac-toe/)
+🔗 [Play it here](https://preetham-adithya.github.io/Tic-Tac-Toe/)
 
 ## Built With
 - HTML5
